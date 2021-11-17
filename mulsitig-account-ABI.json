@@ -1,0 +1,1229 @@
+[
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "defaultAdminAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "_defaultManager",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "companyRegistryAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "companyId_",
+              "type": "uint256"
+          },
+          {
+              "internalType": "address[]",
+              "name": "participants",
+              "type": "address[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "voteWeigth",
+              "type": "uint256[]"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteTreshold",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteValidity_",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "from",
+              "type": "uint256"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "to",
+              "type": "uint256"
+          }
+      ],
+      "name": "CompanyIdChanged",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          }
+      ],
+      "name": "CompanyRegistryAddressChanged",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [],
+      "name": "ContractPurged",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          }
+      ],
+      "name": "DefaultAdminAddressChanged",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "contractAddress",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "string",
+              "name": "functionSignature",
+              "type": "string"
+          },
+          {
+              "indexed": false,
+              "internalType": "bytes",
+              "name": "parameters",
+              "type": "bytes"
+          }
+      ],
+      "name": "ExecuteExecuted",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "previousAdminRole",
+              "type": "bytes32"
+          },
+          {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "newAdminRole",
+              "type": "bytes32"
+          }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+          },
+          {
+              "indexed": true,
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+          }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+          },
+          {
+              "indexed": true,
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+          }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+  },
+  {
+      "anonymous": false,
+      "inputs": [
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          },
+          {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+          }
+      ],
+      "name": "TransactionExecuted",
+      "type": "event"
+  },
+  {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+          {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "MANAGER_ROLE",
+      "outputs": [
+          {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "VersionString",
+      "outputs": [
+          {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "participantAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteWeight_",
+              "type": "uint256"
+          }
+      ],
+      "name": "addParticipant",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "disableContract",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "enableContract",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "startIndex_",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "endIndex_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getAccountData",
+      "outputs": [
+          {
+              "internalType": "address",
+              "name": "accountAddress",
+              "type": "address"
+          },
+          {
+              "internalType": "address[]",
+              "name": "participants",
+              "type": "address[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "voteWeights",
+              "type": "uint256[]"
+          },
+          {
+              "internalType": "uint256",
+              "name": "comulativeVotes",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteTreshold",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteValidity",
+              "type": "uint256"
+          },
+          {
+              "internalType": "bool",
+              "name": "disabled",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getCompanyId",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getCompanyRegistryAddress",
+      "outputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getComulativeVotes",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getDefaultAdminAddress",
+      "outputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getDisabled",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getDivider",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "participantAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteId_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getExecuteVoteCast",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "getExecuteVoteCount",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteId_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getExecuteVoteData",
+      "outputs": [
+          {
+              "components": [
+                  {
+                      "internalType": "uint256",
+                      "name": "id",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "address",
+                      "name": "contractAddress",
+                      "type": "address"
+                  },
+                  {
+                      "internalType": "string",
+                      "name": "functionSignature",
+                      "type": "string"
+                  },
+                  {
+                      "internalType": "bytes",
+                      "name": "params",
+                      "type": "bytes"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "voteAmount",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "voteFinishTimestamp",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "bool",
+                      "name": "voteFinished",
+                      "type": "bool"
+                  }
+              ],
+              "internalType": "struct Vote",
+              "name": "",
+              "type": "tuple"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "startIndex_",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "endIndex_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getExecuteVotes",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "",
+              "type": "uint256[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "startIndex_",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "endIndex_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getExecuteVotesData",
+      "outputs": [
+          {
+              "components": [
+                  {
+                      "internalType": "uint256",
+                      "name": "id",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "address",
+                      "name": "contractAddress",
+                      "type": "address"
+                  },
+                  {
+                      "internalType": "string",
+                      "name": "functionSignature",
+                      "type": "string"
+                  },
+                  {
+                      "internalType": "bytes",
+                      "name": "params",
+                      "type": "bytes"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "voteAmount",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "uint256",
+                      "name": "voteFinishTimestamp",
+                      "type": "uint256"
+                  },
+                  {
+                      "internalType": "bool",
+                      "name": "voteFinished",
+                      "type": "bool"
+                  }
+              ],
+              "internalType": "struct Vote[]",
+              "name": "",
+              "type": "tuple[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getIdentityRegistryAddress",
+      "outputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "participantAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "getIsParticipant",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getParticipantCount",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "participantAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "getParticipantId",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "startIndex_",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "endIndex_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getParticipants",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          },
+          {
+              "internalType": "address[]",
+              "name": "",
+              "type": "address[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "startIndex_",
+              "type": "uint256"
+          },
+          {
+              "internalType": "uint256",
+              "name": "endIndex_",
+              "type": "uint256"
+          }
+      ],
+      "name": "getParticipantsData",
+      "outputs": [
+          {
+              "internalType": "address[]",
+              "name": "",
+              "type": "address[]"
+          },
+          {
+              "internalType": "uint256[]",
+              "name": "",
+              "type": "uint256[]"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "participantAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "getParticipantsVoteWieght",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getRealVoteTreshold",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+          {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getTokenRegistryAddress",
+      "outputs": [
+          {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getVersion",
+      "outputs": [
+          {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+          }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getVoteTreshold",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "getVoteValidity",
+      "outputs": [
+          {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+          }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+          }
+      ],
+      "name": "hasRole",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "killContract",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "string",
+              "name": "functionSignature_",
+              "type": "string"
+          },
+          {
+              "internalType": "bytes",
+              "name": "params_",
+              "type": "bytes"
+          }
+      ],
+      "name": "proposeExecution",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [],
+      "name": "purgeContract",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "participantAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "removeParticipant",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+          }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+          },
+          {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+          }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+          },
+          {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+          }
+      ],
+      "name": "salvageTokensFromContract",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "companyId_",
+              "type": "uint256"
+          }
+      ],
+      "name": "setCompanyId",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "companyRegistryAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "setCompanyRegistryAddress",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "defaultAdminAddress_",
+              "type": "address"
+          }
+      ],
+      "name": "setDefaultAdminAddress",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "divider_",
+              "type": "uint256"
+          }
+      ],
+      "name": "setDivider",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "voteTreshold_",
+              "type": "uint256"
+          }
+      ],
+      "name": "setVoteTreshold",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "voteValidity_",
+              "type": "uint256"
+          }
+      ],
+      "name": "setVoteValidity",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4"
+          }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+  },
+  {
+      "inputs": [
+          {
+              "internalType": "address",
+              "name": "contractAddress_",
+              "type": "address"
+          },
+          {
+              "internalType": "uint256",
+              "name": "voteId_",
+              "type": "uint256"
+          }
+      ],
+      "name": "voteOnExecution",
+      "outputs": [
+          {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+  }
+]
